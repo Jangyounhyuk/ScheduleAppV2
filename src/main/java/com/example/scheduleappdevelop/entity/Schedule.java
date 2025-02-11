@@ -19,4 +19,10 @@ public class Schedule extends BaseEntity {
     private String name;
     private String title;
     private String todo;
+
+    public Schedule(String name, String title, String todo) {
+        this.name = name;
+        this.title = title;
+        this.todo = todo;
+    }
 }
