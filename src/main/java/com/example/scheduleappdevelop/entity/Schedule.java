@@ -1,11 +1,8 @@
 package com.example.scheduleappdevelop.entity;
 
-import com.example.scheduleappdevelop.dto.response.ScheduleResponseDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -18,6 +15,10 @@ public class Schedule extends BaseEntity {
     private String name;
     private String title;
     private String todo;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public Schedule(String name, String title, String todo) {
         this.name = name;

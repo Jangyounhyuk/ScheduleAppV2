@@ -2,7 +2,6 @@ package com.example.scheduleappdevelop.controller;
 
 import com.example.scheduleappdevelop.dto.request.MemberRequestDto;
 import com.example.scheduleappdevelop.dto.response.MemberResponseDto;
-import com.example.scheduleappdevelop.entity.Member;
 import com.example.scheduleappdevelop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
