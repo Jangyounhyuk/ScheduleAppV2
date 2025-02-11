@@ -67,10 +67,11 @@ public class ScheduleService {
     }
 
     @Transactional
-    public ScheduleResponseDto update(Long id, String title, String todo) {
+    public ScheduleResponseDto update(Long id, String name, String title, String todo) {
         Schedule findSchedule = schedulerRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 id 일정 없음")
         );
+
         findSchedule.update(title, todo);
         return new ScheduleResponseDto(
                 findSchedule.getId(),
