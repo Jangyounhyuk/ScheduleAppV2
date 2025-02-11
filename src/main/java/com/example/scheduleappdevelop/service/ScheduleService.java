@@ -21,14 +21,14 @@ public class ScheduleService {
     @Transactional
     public ScheduleResponseDto save(ScheduleRequestDto dto) {
         Schedule schedule = new Schedule(dto.getName(), dto.getTitle(), dto.getTodo());
-        schedulerRepository.save(schedule);
+        Schedule savedSchedule = schedulerRepository.save(schedule);
         return new ScheduleResponseDto(
-                schedule.getId(),
-                schedule.getName(),
-                schedule.getTitle(),
-                schedule.getTodo(),
-                schedule.getCreatedAt(),
-                schedule.getUpdatedAt()
+                savedSchedule.getId(),
+                savedSchedule.getName(),
+                savedSchedule.getTitle(),
+                savedSchedule.getTodo(),
+                savedSchedule.getCreatedAt(),
+                savedSchedule.getUpdatedAt()
         );
     }
 
@@ -40,13 +40,14 @@ public class ScheduleService {
         List<ScheduleResponseDto> dtos = new ArrayList<>();
         for (Schedule schedule : schedules) {
             dtos.add(new ScheduleResponseDto(
-                    schedule.getId(),
-                    schedule.getName(),
-                    schedule.getTitle(),
-                    schedule.getTodo(),
-                    schedule.getCreatedAt(),
-                    schedule.getUpdatedAt()
-            ));
+                            schedule.getId(),
+                            schedule.getName(),
+                            schedule.getTitle(),
+                            schedule.getTodo(),
+                            schedule.getCreatedAt(),
+                            schedule.getUpdatedAt()
+                    )
+            );
         }
         return dtos;
     }
