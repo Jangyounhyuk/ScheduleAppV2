@@ -19,7 +19,7 @@ public class MemberService {
 
     @Transactional
     public MemberResponseDto save(MemberRequestDto dto) {
-        Member member = new Member(dto.getName(), dto.getEmail());
+        Member member = new Member(dto.getName(), dto.getEmail(), dto.getPassword());
         Member savedMember = memberRepository.save(member);
         return new MemberResponseDto(
                 savedMember.getId(),
@@ -68,7 +68,7 @@ public class MemberService {
         Member findMember = memberRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 id 멤버 없음")
         );
-        findMember.update(dto.getName(), dto.getEmail());
+        findMember.update(dto.getName(), dto.getEmail(), dto.getPassword());
         return new MemberResponseDto(
                 findMember.getId(),
                 findMember.getName(),
