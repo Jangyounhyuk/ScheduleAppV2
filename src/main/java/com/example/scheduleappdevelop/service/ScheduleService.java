@@ -72,7 +72,7 @@ public class ScheduleService {
                 () -> new IllegalArgumentException("해당 id 일정 없음")
         );
 
-        findSchedule.update(title, todo);
+        findSchedule.update(name, title, todo);
         return new ScheduleResponseDto(
                 findSchedule.getId(),
                 findSchedule.getName(),

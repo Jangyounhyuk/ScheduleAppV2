@@ -1,5 +1,6 @@
 package com.example.scheduleappdevelop.dto.request;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
