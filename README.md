@@ -4,4 +4,8 @@ API
 
 ERD
 
-![image](https://github.com/user-attachments/assets/74f8d637-ed8a-4ca5-a901-f7cb6ce0e2f4)
+![image](https://github.com/user-attachments/assets/5d24df27-46a1-4853-847e-76ea8912dded)
+
+SQL
+
+![image](https://github.com/user-attachments/assets/afc00734-e6c6-4453-8d47-0497c28d269b)
