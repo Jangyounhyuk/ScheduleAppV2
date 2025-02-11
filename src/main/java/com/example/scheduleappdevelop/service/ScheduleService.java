@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,11 +19,10 @@ public class ScheduleService {
 
     @Transactional
     public ScheduleResponseDto save(ScheduleRequestDto dto) {
-        Schedule schedule = new Schedule(dto.getName(), dto.getTitle(), dto.getTodo());
+        Schedule schedule = new Schedule(dto.getTitle(), dto.getTodo());
         Schedule savedSchedule = schedulerRepository.save(schedule);
         return new ScheduleResponseDto(
                 savedSchedule.getId(),
-                savedSchedule.getName(),
                 savedSchedule.getTitle(),
                 savedSchedule.getTodo(),
                 savedSchedule.getCreatedAt(),
@@ -41,7 +39,6 @@ public class ScheduleService {
         for (Schedule schedule : schedules) {
             dtos.add(new ScheduleResponseDto(
                             schedule.getId(),
-                            schedule.getName(),
                             schedule.getTitle(),
                             schedule.getTodo(),
                             schedule.getCreatedAt(),
@@ -59,7 +56,6 @@ public class ScheduleService {
         );
         return new ScheduleResponseDto(
                 findSchedule.getId(),
-                findSchedule.getName(),
                 findSchedule.getTitle(),
                 findSchedule.getTodo(),
                 findSchedule.getCreatedAt(),
@@ -73,10 +69,9 @@ public class ScheduleService {
                 () -> new IllegalArgumentException("해당 id 일정 없음")
         );
 
-        findSchedule.update(name, title, todo);
+        findSchedule.update(title, todo);
         return new ScheduleResponseDto(
                 findSchedule.getId(),
-                findSchedule.getName(),
                 findSchedule.getTitle(),
                 findSchedule.getTodo(),
                 findSchedule.getCreatedAt(),
