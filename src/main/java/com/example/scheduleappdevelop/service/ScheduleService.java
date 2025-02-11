@@ -65,4 +65,28 @@ public class ScheduleService {
                 findSchedule.getUpdatedAt()
         );
     }
+
+    @Transactional
+    public ScheduleResponseDto update(Long id, String title, String todo) {
+        Schedule findSchedule = schedulerRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 id 일정 없음")
+        );
+        findSchedule.update(title, todo);
+        return new ScheduleResponseDto(
+                findSchedule.getId(),
+                findSchedule.getName(),
+                findSchedule.getTitle(),
+                findSchedule.getTodo(),
+                findSchedule.getCreatedAt(),
+                findSchedule.getUpdatedAt()
+        );
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        if (!schedulerRepository.existsById(id)) {
+            throw new IllegalArgumentException("해당 id 일정 없음");
+        }
+        schedulerRepository.deleteById(id);
+    }
 }

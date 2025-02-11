@@ -1,5 +1,6 @@
 package com.example.scheduleappdevelop.entity;
 
+import com.example.scheduleappdevelop.dto.response.ScheduleResponseDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +23,11 @@ public class Schedule extends BaseEntity {
 
     public Schedule(String name, String title, String todo) {
         this.name = name;
+        this.title = title;
+        this.todo = todo;
+    }
+
+    public void update(String title, String todo) {
         this.title = title;
         this.todo = todo;
     }

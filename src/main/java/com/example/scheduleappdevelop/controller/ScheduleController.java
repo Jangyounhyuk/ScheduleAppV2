@@ -32,4 +32,17 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.findById(id));
     }
 
+    @PatchMapping("/schedules/{id}")
+    public ResponseEntity<ScheduleResponseDto> update(
+            @PathVariable Long id,
+            @RequestBody ScheduleRequestDto dto
+    ) {
+        return ResponseEntity.ok(scheduleService.update(id, dto.getTitle(), dto.getTodo()));
+    }
+
+    @DeleteMapping("/schedules/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        scheduleService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

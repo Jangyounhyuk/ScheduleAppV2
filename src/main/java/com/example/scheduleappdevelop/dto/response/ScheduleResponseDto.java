@@ -22,4 +22,5 @@ public class ScheduleResponseDto {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
 }
