@@ -15,13 +15,14 @@ public class Schedule extends BaseEntity {
     private String title;
     private String todo;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    public Schedule(String title, String todo) {
+    public Schedule(String title, String todo, Member member) {
         this.title = title;
         this.todo = todo;
+        this.member = member;
     }
 
     public void update(String title, String todo) {

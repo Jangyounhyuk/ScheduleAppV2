@@ -6,11 +6,9 @@ import lombok.Getter;
 @Getter
 public class ScheduleRequestDto {
 
-    @NotBlank(message = "name은 필수값입니다.")
-    private String name;
     @NotBlank(message = "title은 필수값입니다.")
     private String title;
     @NotBlank(message = "todo는 필수값입니다.")
     private String todo;
-
+    private Long memberId;
 }

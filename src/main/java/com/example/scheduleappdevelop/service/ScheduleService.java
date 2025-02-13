@@ -2,7 +2,9 @@ package com.example.scheduleappdevelop.service;
 
 import com.example.scheduleappdevelop.dto.request.ScheduleRequestDto;
 import com.example.scheduleappdevelop.dto.response.ScheduleResponseDto;
+import com.example.scheduleappdevelop.entity.Member;
 import com.example.scheduleappdevelop.entity.Schedule;
+import com.example.scheduleappdevelop.repository.MemberRepository;
 import com.example.scheduleappdevelop.repository.SchedulerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,16 @@ import java.util.List;
 public class ScheduleService {
 
     private final SchedulerRepository schedulerRepository;
+    private final MemberRepository memberRepository;
 
     @Transactional
     public ScheduleResponseDto save(ScheduleRequestDto dto) {
-        Schedule schedule = new Schedule(dto.getTitle(), dto.getTodo());
+
+        Member member = memberRepository.findById(dto.getMemberId()).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 member입니다.")
+        );
+
+        Schedule schedule = new Schedule(dto.getTitle(), dto.getTodo(), member);
         Schedule savedSchedule = schedulerRepository.save(schedule);
         return new ScheduleResponseDto(
                 savedSchedule.getId(),
@@ -64,7 +72,7 @@ public class ScheduleService {
     }
 
     @Transactional
-    public ScheduleResponseDto update(Long id, String name, String title, String todo) {
+    public ScheduleResponseDto update(Long id, String title, String todo) {
         Schedule findSchedule = schedulerRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 id 일정 없음")
         );

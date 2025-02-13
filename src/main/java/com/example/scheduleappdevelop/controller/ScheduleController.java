@@ -38,7 +38,7 @@ public class ScheduleController {
             @PathVariable Long id,
             @Validated @RequestBody ScheduleRequestDto dto
     ) {
-        return ResponseEntity.ok(scheduleService.update(id, dto.getName(), dto.getTitle(), dto.getTodo()));
+        return ResponseEntity.ok(scheduleService.update(id, dto.getTitle(), dto.getTodo()));
     }
 
     @DeleteMapping("/schedules/{id}")
